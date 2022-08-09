@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
-  s.dependency 'WalletConnectSwiftV2', :git => 'https://github.com/WalletConnect/WalletConnectSwiftV2'
+  s.dependency 'WalletConnectSwiftV2'
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
