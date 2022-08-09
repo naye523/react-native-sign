@@ -31,7 +31,8 @@
   "devDependencies": {
     "expo-module-scripts": "2.0.0",
     "expo-modules-core": "0.11.3",
-    "eslint-config-prettier": "8.5.0"
+    "eslint-config-prettier": "8.5.0",
+    "@walletconnect/types": "2.0.0-rc.1"
   },
   "peerDependencies": {
     "expo": "*",

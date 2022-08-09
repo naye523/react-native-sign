@@ -1,20 +1,22 @@
-import { EventEmitter, NativeModulesProxy, Subscription } from 'expo-modules-core'
+import { EventEmitter, NativeModulesProxy } from 'expo-modules-core'
 
-import { ChangeEventPayload, ReactNativeSignViewProps } from './ReactNativeSign.types'
+import { InitFunc, PairFunc, SessionProposalEvent } from './ReactNativeSign.types'
 import ReactNativeSign from './ReactNativeSignModule'
 
-export function hello(): string {
-  return ReactNativeSign.hello()
+// Methods
+export const init: InitFunc = async args => {
+  return await ReactNativeSign.init(args)
 }
 
-export async function setValueAsync(value: string) {
-  return await ReactNativeSign.setValueAsync(value)
+export const pair: PairFunc = async args => {
+  return await ReactNativeSign.pair(args)
 }
 
+// Events
 const emitter = new EventEmitter(NativeModulesProxy.ReactNativeSign ?? ReactNativeSign)
 
-export function addChangeListener(listener: (event: ChangeEventPayload) => void): Subscription {
-  return emitter.addListener<ChangeEventPayload>('onChange', listener)
+export function onSessionProposal(listener: (event: SessionProposalEvent) => void) {
+  return emitter.addListener<SessionProposalEvent>('session_proposal', listener)
 }
 
-export { ReactNativeSignViewProps, ChangeEventPayload }
+export { SessionProposalEvent }

@@ -1,4 +1,5 @@
 import ExpoModulesCore
+import WalletConnectSign
 
 public class ReactNativeSignModule: Module {
   public func definition() -> ModuleDefinition {
