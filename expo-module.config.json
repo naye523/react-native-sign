@@ -1,0 +1,9 @@
+{
+  "platforms": ["ios", "android"],
+  "ios": {
+    "modules": ["ReactNativeSignModule"]
+  },
+  "android": {
+    "modules": ["walletconnect.sign.ReactNativeSignModule"]
+  }
+}

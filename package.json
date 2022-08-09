@@ -1,0 +1,41 @@
+{
+  "name": "@walletconnect/react-native-sign",
+  "version": "0.1.0",
+  "description": "WalletConnect react-native sign sdk",
+  "main": "build/ReactNativeSign.js",
+  "types": "build/ReactNativeSign.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "react-native-sign",
+    "walletconnect",
+    "sign"
+  ],
+  "repository": "https://github.com/WalletConnect/react-native-sign",
+  "bugs": {
+    "url": "https://github.com/WalletConnect/react-native-sign/issues"
+  },
+  "author": "WalletConnect <contact@walletconnect.com> (https://github.com/WalletConnect)",
+  "license": "MIT",
+  "homepage": "https://github.com/WalletConnect/react-native-sign#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "expo-module-scripts": "2.0.0",
+    "expo-modules-core": "0.11.3",
+    "eslint-config-prettier": "8.5.0"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
