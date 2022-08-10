@@ -90,7 +90,8 @@ class ReactNativeSignModule : Module() {
       SignClient.setDappDelegate(dappDelegate)
     }
 
-    Function("hello") {
+    // Functions
+    Function("init") {
       val initString = Sign.Params.Init(
         application = appContext.currentActivity!!.application,
         connectionType = Sign.ConnectionType.AUTOMATIC,
