@@ -2,20 +2,42 @@ package com.walletconnect.reactNativeSign
 
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
+import expo.modules.kotlin.records.Record
+import expo.modules.kotlin.records.Field
 import com.walletconnect.sign.client.Sign
 import com.walletconnect.sign.client.SignClient
 
-// Event name constants
+// -- Event constants ------------------------------------------------------------ //
 private var SESSION_PROPOSAL_EVENT = "session_proposal"
 
 class ReactNativeSignModule : Module() {
   override fun definition() = ModuleDefinition {
-    
-    // Definitions
+
     Name("ReactNativeSign")
     Events(SESSION_PROPOSAL_EVENT)
 
-    // Delegates
+    // -- Records ---------------------------------------------------------------- //
+    class MetadataOptions: Record {
+      @Field
+      val name: String = ""
+      @Field
+      val description: String = ""
+      @Field
+      val url: String = ""
+      @Field
+      val icons: List<String> = listOf()
+    }
+
+    class InitOptions: Record {
+      @Field
+      val relayServerUrl: String = "wss://relay.walletconnect.com"
+      @Field
+      val projectId: String = ""
+      @Field
+      val metadata: MetadataOptions = MetadataOptions()
+    }
+
+    // -- Delegates -------------------------------------------------------------- //
     val walletDelegate = object : SignClient.WalletDelegate {
       override fun onConnectionStateChange(state: Sign.Model.ConnectionState) {
         TODO("Not yet implemented")
@@ -45,7 +67,7 @@ class ReactNativeSignModule : Module() {
         TODO("Not yet implemented")
       }
     }
-    
+
     val dappDelegate = object : SignClient.DappDelegate {
       override fun onConnectionStateChange(state: Sign.Model.ConnectionState) {
         TODO("Not yet implemented")
@@ -84,23 +106,23 @@ class ReactNativeSignModule : Module() {
       }
     }
 
-    // Lifecycle hooks
+    // -- Lifecycle hooks -------------------------------------------------------- //
     OnCreate {
       SignClient.setWalletDelegate(walletDelegate)
       SignClient.setDappDelegate(dappDelegate)
     }
 
-    // Functions
-    Function("init") {
+    // -- Functions -------------------------------------------------------------- //
+    Function("init") { options: InitOptions ->
       val initString = Sign.Params.Init(
         application = appContext.currentActivity!!.application,
         connectionType = Sign.ConnectionType.AUTOMATIC,
-        relayServerUrl = "wss://",
+        relayServerUrl = options.relayServerUrl,
         metadata = Sign.Model.AppMetaData(
-          name = "Test App",
-          description = "Test Description",
-          url = "Tes utl",
-          icons = listOf("1", "2")
+          name = options.metadata.name,
+          description = options.metadata.description,
+          url = options.metadata.url,
+          icons = options.metadata.icons
         )
       )
       SignClient.initialize(initString) { error ->
