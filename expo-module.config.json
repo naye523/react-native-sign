@@ -4,6 +4,6 @@
     "modules": ["ReactNativeSignModule"]
   },
   "android": {
-    "modules": ["walletconnect.sign.ReactNativeSignModule"]
+    "modules": ["com.walletconnect.reactNativeSign.ReactNativeSignModule"]
   }
 }

@@ -1,4 +1,4 @@
-package walletconnect.sign
+package com.walletconnect.reactNativeSign
 
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
@@ -10,6 +10,7 @@ private var SESSION_PROPOSAL_EVENT = "session_proposal"
 
 class ReactNativeSignModule : Module() {
   override fun definition() = ModuleDefinition {
+    
     // Definitions
     Name("ReactNativeSign")
     Events(SESSION_PROPOSAL_EVENT)
