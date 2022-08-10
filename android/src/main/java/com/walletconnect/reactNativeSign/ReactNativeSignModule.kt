@@ -7,35 +7,32 @@ import expo.modules.kotlin.records.Field
 import com.walletconnect.sign.client.Sign
 import com.walletconnect.sign.client.SignClient
 
+
+
 // -- Event constants ------------------------------------------------------------ //
 private var SESSION_PROPOSAL_EVENT = "session_proposal"
+
+// -- Records -------------------------------------------------------------------- //
+class MetadataOptions: Record {
+  @Field val name: String = ""
+  @Field val description: String = ""
+  @Field val url: String = ""
+  @Field val icons: List<String> = listOf()
+}
+
+class InitOptions: Record {
+  @Field val relayServerUrl: String = "wss://relay.walletconnect.com"
+  @Field val projectId: String = ""
+  @Field val metadata: MetadataOptions = MetadataOptions()
+}
+
+
 
 class ReactNativeSignModule : Module() {
   override fun definition() = ModuleDefinition {
 
     Name("ReactNativeSign")
     Events(SESSION_PROPOSAL_EVENT)
-
-    // -- Records ---------------------------------------------------------------- //
-    class MetadataOptions: Record {
-      @Field
-      val name: String = ""
-      @Field
-      val description: String = ""
-      @Field
-      val url: String = ""
-      @Field
-      val icons: List<String> = listOf()
-    }
-
-    class InitOptions: Record {
-      @Field
-      val relayServerUrl: String = "wss://relay.walletconnect.com"
-      @Field
-      val projectId: String = ""
-      @Field
-      val metadata: MetadataOptions = MetadataOptions()
-    }
 
     // -- Delegates -------------------------------------------------------------- //
     val walletDelegate = object : SignClient.WalletDelegate {
@@ -129,6 +126,5 @@ class ReactNativeSignModule : Module() {
         throw error.throwable
       }
     }
-
   }
 }
